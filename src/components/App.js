@@ -1,5 +1,11 @@
-import React, { useState,useReducer } from "react";
+import React, { useState } from "react";
 import "./../styles/App.css";
+import StateDropDown from './Dropdown_state';
+import StateDetails from './State_details';
+import CityDropDown from './Dropdown_city';
+import CityDetails from './City_details';
+import TownDropDown from './Dropdown_town';
+import TownDetails from './Town_details';
 
 
 const states = [{
@@ -140,10 +146,40 @@ const states = [{
 
 function App() 
 {
-	// Do not alter/remove main div
+	const [State,setState]=useState(0);
+	const [City,setCity]=useState(0);
+	const [Town,setTown]=useState(0);
+
+	const changeState=()=>{
+		let x=document.getElementById("state").value;
+		setState(x);
+		setCity(0);
+		setTown(0);
+	}
+
+	const changeCity=()=>{
+		let x=document.getElementById("city").value;
+		setCity(x);
+		setTown(0);
+	}
+
+	const changeTown=()=>{
+		let x=document.getElementById("town").value;
+		setTown(x);
+	}
+	
 	return (
 	<div id="main">
-		
+		<div className="dropdown-container">
+			<StateDropDown arrayStates={[...states]} changing={changeState}/>
+			<CityDropDown arrayStates={[...states]} changing={changeCity} changedState={State}/>
+			<TownDropDown arrayStates={[...states]} changing={changeTown} changedCity={City} changedState={State}/>
+		</div>
+		<div className="detail-container">
+		<StateDetails arrayStates={[...states]} changedState={State}/>
+		<CityDetails arrayStates={[...states]} changedState={State} changedCity={City}/>
+		<TownDetails arrayStates={[...states]} changedState={State} changedCity={City} changedTown={Town}/>
+		</div>
 	</div>
 	);
 }

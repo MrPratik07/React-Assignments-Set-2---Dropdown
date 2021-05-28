@@ -1,16 +1,19 @@
-h1 {
-    color: #27aedb;
-    text-align: center;
-    }
+#main{
+    display: flex;
+    justify-content:space-around;
     
-
-button{
-    color: #27aedb;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
 }
 
-.bg-pink{
-	background-color:pink;
+.dropdown-container{
+    border: 2px;
+}
+
+.detail-container{
+    border: 2px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    height: 60%;
 }
